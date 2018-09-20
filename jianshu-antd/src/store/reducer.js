@@ -1,3 +1,5 @@
+import * as types from './actionTypes'
+
 const defaultState = {
 	inputValue: '',
 	list: ['redux', 'react']	
@@ -6,18 +8,18 @@ const defaultState = {
 export default (state=defaultState, action) => {
 	// console.info(state,action)
 	switch (action.type) {
-		case 'CHANGE_INPUT_VALUE':
+		case types.CHANGE_INPUT_VALUE:
 			return Object.assign({}, state, {
 				inputValue: action.value
 			})
 
-		case 'ADD_TODOLIST':
+		case types.ADD_TODOLIST:
 			return Object.assign({}, state, {
 				list: [...state.list, state.inputValue],
 				inputValue: ''
 			})
 
-		case 'DELETE_TODOLIST': 
+		case types.DELETE_TODOLIST: 
 			const newState = Object.assign({}, state)
 			newState.list.splice(action.index, 1)
 			return newState
