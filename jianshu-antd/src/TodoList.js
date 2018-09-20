@@ -1,59 +1,70 @@
 import React, { Component } from 'react'
+import { Input, Button, List } from 'antd';
 
 import 'antd/dist/antd.css';
+	
+import store from './store'	
 
-import { Input, Button, List } from 'antd';
 
 
 class TodoList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-    	list: [1,2],
-    	inputValue :'我是默认数据'
-    }
+    this.state = store.getState()
+    store.subscribe(this.storeChangeHandler)
   }
 
 	render() {
 		return (
 				<div>
-			
 					<Input placeholder="请输入内容" 
 						value={this.state.inputValue} 
 						style={{width:300}} 
 						onChange={this.getInputValueHandler}/>
 						
-					<Button type="Primary" onClick={ this.addHandler }>ADD</Button>
+					<Button type="Primary" onClick={this.addHandler}>ADD</Button>
 
 			   	<List
 			   		style= {{width:'300px'}}
 			      bordered
 			      dataSource={this.state.list}
-			      renderItem={item => (<List.Item>{item}</List.Item>)}
-		    	/>
-		    
+			      renderItem={(item,index) => (
+			      	<List.Item onClick={this.delHandler.bind(this,index)}>{item}</List.Item>
+			      )}/>
 				</div>
 		)
 	}
 
 	getInputValueHandler=(e)=>{
-		console.info(33,e.target.value)
-		 const value = e.target.value
-		 this.setState(() => ({
-          inputValue: value
-     }))
 
+		const action = {
+			type: 'CHANGE_INPUT_VALUE',
+			value: e.target.value
+		}
+		store.dispatch(action)
 	}
 
 	addHandler=()=> {
-		 console.info(this.state)
-     this.setState((prevState) => ({
-        list: [...prevState.list, prevState.inputValue],
-        inputValue: ''
-     }))
+    const action = {
+			type: 'ADD_TODOLIST',
+		}
+		store.dispatch(action)
 	}
 
+	delHandler(index){
+		console.info('index',index)
+		const action = {
+			type: 'DELETE_TODOLIST',
+			index: index
+		}
+		store.dispatch(action)
+	}
+
+	// 事件监听器 
+	storeChangeHandler =()=>{
+		this.setState(store.getState())
+	}
 }
 
 export default TodoList
