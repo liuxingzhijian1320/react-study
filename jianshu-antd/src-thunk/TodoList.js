@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { Input, Button, List } from 'antd';
 
 import 'antd/dist/antd.css';
 	
 import store from './store'	
-import { getInputValueAction, getAddAction, getDeleteAction, getFetchListAction } from './store/actionCreators'
+import { fetchTodoList, getInputValueAction, getAddAction, getDeleteAction } from './store/actionCreators'
 
 class TodoList extends Component {
 
@@ -37,10 +37,12 @@ class TodoList extends Component {
 	}
 	// ajax的请求
 	componentDidMount() {
-		axios.get('https://www.easy-mock.com/mock/59d78cd99d342f449f2fec24/api/table').then((res)=>{
-			console.info(res.data.data)
-			store.dispatch(getFetchListAction(res.data.data))
-		}) 
+		const action = fetchTodoList()
+		store.dispatch(action)
+		// axios.get('https://www.easy-mock.com/mock/59d78cd99d342f449f2fec24/api/table').then((res)=>{
+		// 	console.info(res.data.data)
+		// 	store.dispatch(getFetchListAction(res.data.data))
+		// }) 
 	}
 
 	getInputValueHandler=(e)=>{
