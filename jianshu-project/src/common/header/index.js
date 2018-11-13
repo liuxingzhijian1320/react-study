@@ -81,7 +81,7 @@ const Header =(props) =>{
 						onFocus={props.focusHandler}
 						onBlur={props.blurHandler}>
 					</Search>
-					<i className="i confont focused-iconfont">&#xe623;</i>
+					<i className="iconfont focused-iconfont">&#xe623;</i>
 				</SearchBox>
 			</Nav>
 			<Addtion>

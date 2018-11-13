@@ -30,11 +30,12 @@ class Home extends Component {
 			<HomeWrapper>
 				<HomeLeft>
 					<Banner swiper={this.state.swiper}/>
-					<Topic></Topic>
+					<Topic />
+					<List />
 				</HomeLeft>
 				<HomeRight>
 
-					<List />
+					
 				</HomeRight>
 			</HomeWrapper>
 		)
