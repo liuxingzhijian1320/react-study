@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable' // 不可更改属性的方法
 
 const defaultState = fromJS({
-	isFocused: false
+	isFocused: false,
 })
 
 // 纯函数
