@@ -5,7 +5,8 @@ const defaultState = fromJS({
 	articleList:[],
 	recommandList:[],
 	page:1,
-	per_page:3
+	per_page:3,
+	showBacktop: false
 })
 
 // 纯函数
@@ -23,6 +24,8 @@ export default (state=defaultState, action) => {
 				articleList: state.get('articleList').concat(action.result),
 				page: action.page
 			})
+		case 'HOME/ISSHOW_BACKTOP':
+			return state.set('showBacktop',fromJS(action.show))
 		default:	
 			return state
 	}

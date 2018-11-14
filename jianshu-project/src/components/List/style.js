@@ -59,7 +59,7 @@ export const LoadMore= styled.div`
 	text-align: center;
 	color:#fff;
 	border-radius: 20px;
-	cursor: poiinter;
+	cursor: pointer
 `;
 
 

@@ -9,7 +9,8 @@ import axios from 'axios'
 import {
 	HomeWrapper,
 	HomeLeft,
-	HomeRight
+	HomeRight,
+	BackTop
 } from './style.js'
 
 class Home extends Component {
@@ -26,7 +27,10 @@ class Home extends Component {
 			]
 		}
 	}
+
+
 	render(){
+		// let { backtop }  = this.props
 		return (
 			<HomeWrapper>
 				<HomeLeft>
@@ -36,17 +40,29 @@ class Home extends Component {
 				</HomeLeft>
 				<HomeRight>
 					<Recommand />
-					
 				</HomeRight>
+				{this.props.showBacktop ? <BackTop onClick={this.backtop}>顶部</BackTop> : null}
 			</HomeWrapper>
 		)
 	}
 
+	// 生命周期
 	componentDidMount(){
 		this.props.fetchHomeDetail()
-		
+		window.addEventListener('scroll', this.props.handlerScroll, true)
 	}
+
+	// 返回首页
+	backtop=()=>{
+		window.scrollTo(0, 0)
+	}
+
 }
+
+
+const mapStateToProps = (state) =>({
+	showBacktop: state.home.get('showBacktop')
+})
 
 const mapDispatchToProps = (dispatch) => ({
 	fetchHomeDetail() {
@@ -60,8 +76,20 @@ const mapDispatchToProps = (dispatch) => ({
 			}
 			dispatch(action)
 		})
+	},
+	handlerScroll(){
+		const action = {
+			type: 'HOME/ISSHOW_BACKTOP'
+		}
+		var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+		if(scrollTop > 100){
+			action.show = true;
+		}else {
+			action.show = false;
+		}
+		dispatch(action)
 	}
 })
 
 
-export default connect(null,mapDispatchToProps)(Home)
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
