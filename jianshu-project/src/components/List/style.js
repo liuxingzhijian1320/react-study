@@ -16,7 +16,7 @@ export const ListItem= styled.div`
 		top: 50%;
 		transform: translateY(-50%);
 	}
-`
+`;
 
 export const ListInfo= styled.div`
 	padding-right: 140px;
@@ -33,7 +33,7 @@ export const ListInfo= styled.div`
     line-height: 24px;
     color: #999;
 	}
-`
+`;
 
 export const ListBottom= styled.div`
    font-size: 12px;
@@ -49,4 +49,19 @@ export const ListBottom= styled.div`
 	.value {
 		margin-right: 10px;
 	}
-`
+`;
+
+export const LoadMore= styled.div`
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #a5a5a5;
+	text-align: center;
+	color:#fff;
+	border-radius: 20px;
+	cursor: poiinter;
+`;
+
+
+
+

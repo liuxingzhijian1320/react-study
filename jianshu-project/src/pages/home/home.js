@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Banner from '../../components/Banner/Banner'
 import List from '../../components/List/List'
-import Write from '../../components/Write/Write'
+// import Write from '../../components/Write/Write'
 import Topic from '../../components/Topic/Topic'
 import Recommand from '../../components/Recommand/Recommand'
-
+import axios from 'axios'
 import {
 	HomeWrapper,
 	HomeLeft,
@@ -34,12 +35,33 @@ class Home extends Component {
 					<List />
 				</HomeLeft>
 				<HomeRight>
-
+					<Recommand />
 					
 				</HomeRight>
 			</HomeWrapper>
 		)
 	}
+
+	componentDidMount(){
+		this.props.fetchHomeDetail()
+		
+	}
 }
 
-export default Home
+const mapDispatchToProps = (dispatch) => ({
+	fetchHomeDetail() {
+		axios.get('/api/home.json').then((res)=>{
+			const result = res.data.data;
+			const action = {
+				type: 'HOME/FETCH_HOME_DETAIL',
+				topicList: result.topicList,
+				articleList: result.articleList,
+				recommandList: result.recommandList
+			}
+			dispatch(action)
+		})
+	}
+})
+
+
+export default connect(null,mapDispatchToProps)(Home)

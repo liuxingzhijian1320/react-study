@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const TopicWrapper= styled.div`
 	padding: 20px 0 10px 0;
 	overflow: hidden;
-`
+`;
 
 export const TopicItem= styled.div`
 	float: left;
@@ -24,4 +24,4 @@ export const TopicItem= styled.div`
     font-size: 14px;
     float: left;
 	}
-`
+`;
