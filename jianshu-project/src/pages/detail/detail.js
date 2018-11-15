@@ -9,6 +9,11 @@ import {
 } from './style.js'
 
 class Detail extends Component {
+	// constructor(props){
+		// super(props);
+		// console.info('props', props.match.params.id)
+	// }
+
 	render(){
 		let { detail, list } = this.props
 		return (
@@ -27,7 +32,7 @@ class Detail extends Component {
 	}
 
 	componentDidMount(){
-		this.props.getDetailHandler()
+		this.props.getDetailHandler(this.props.match.params.id)
 	}
 }
 
@@ -43,7 +48,7 @@ const mapState = (state) =>{
 const mapDispatch = (dispatch) =>{
 	return {
 			getDetailHandler(id){
-				axios.get('/api/detail.json').then((res)=>{
+				axios.get(`/api/detail.json?id=${id}`).then((res)=>{
 					const action = {
 						type: 'DETAIL/DETAIL',
 						detail: res.data.data

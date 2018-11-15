@@ -5,27 +5,28 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './common/header'
 import store from './store'
 
-import Home from './pages/home/home.js'
-import Detail from './pages/detail/detail.js'
+import Home from './pages/home/home'
+import Detail from './pages/detail/detail'
+import Login from './pages/login/login'
+import Write from './pages/write/write'
+
 
 class App extends Component {
-
 	render() {
 		return (
 				<Provider store={store}>
-					<div>
-						<Header />
-						<BrowserRouter>
-							<div>
-								<Route path='/' exact component={Home}></Route>
-								<Route path='/detail' exact component={Detail}></Route>
-							</div>
-						</BrowserRouter>
-					</div>
+					<BrowserRouter>
+						<div>
+							<Header />
+							<Route path='/' exact component={Home}></Route>
+							<Route path='/detail/:id' exact component={Detail}></Route>
+							<Route path='/login' exact component={Login}></Route>
+							<Route path='/write' exact component={Write}></Route>
+						</div>
+					</BrowserRouter>
 				</Provider>
 			)
 	}
-
 }
 
 export default App

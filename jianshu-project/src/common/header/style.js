@@ -7,9 +7,7 @@ export const HeaderStyle = styled.div`
 	position: relative;
 `
 
-export const Logo = styled.a.attrs({
-	href:'/'
-})`
+export const Logo = styled.div`
 	height: 56px;
 	width: 100px;
 	position: absolute;
@@ -30,6 +28,8 @@ export const NavItem = styled.div`
 	color: #333;
 	padding: 0 15px;
 	font-size: 17px;
+	display: flex;
+	cursor: pointer
 	&.left {
 		float: left;
 	}
@@ -40,7 +40,12 @@ export const NavItem = styled.div`
 	&.active {
 		color: #ea6f5a;
 	}
+	.account {
+		color: #ff0ff0;
+		margin-right: 10px;
+	}
 `
+
 export const SearchBox = styled.div`
 	float: left;
 	overflow: hidden;
