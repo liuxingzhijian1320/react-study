@@ -6,7 +6,7 @@ import Header from './common/header'
 import store from './store'
 
 import Home from './pages/home/home'
-import Detail from './pages/detail/detail'
+import Detail from './pages/detail/loadable.js'
 import Login from './pages/login/login'
 import Write from './pages/write/write'
 

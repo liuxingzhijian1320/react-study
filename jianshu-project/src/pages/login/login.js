@@ -39,7 +39,14 @@ const mapState = (state) =>{
 const mapDispatch = (dispatch) =>{
 	return {
 			loginHandler(account, password){
-				console.info(account.value, password.value)
+				// console.info(account.value, password.value)
+				if(!account.value){
+					alert('请输入账号')
+					return;
+				}else if(!password.value){
+					alert('请输入姓名')
+					return;
+				}
 				const action = {
 					type:'LOGIN/LOGIN',
 					account: account.value
